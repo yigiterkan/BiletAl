@@ -15,10 +15,10 @@ namespace BiletAl.Models.Entity
     public partial class TBLBilet
     {
         public byte SeferID { get; set; }
-        public Nullable<int> YolcuID { get; set; }
-        public Nullable<decimal> SatisFiyati { get; set; }
+        public int YolcuID { get; set; }
+        public decimal SatisFiyati { get; set; }
         public string KoltukNo { get; set; }
-        public Nullable<byte> OtobusID { get; set; }
+        public byte OtobusID { get; set; }
     
         public virtual TBLKullanici TBLKullanici { get; set; }
         public virtual TBLOtobüs TBLOtobüs { get; set; }

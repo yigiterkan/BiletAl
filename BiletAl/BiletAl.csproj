@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcKutuphane</RootNamespace>
-    <AssemblyName>MvcKutuphane</AssemblyName>
+    <RootNamespace>BiletAl</RootNamespace>
+    <AssemblyName>BiletAl</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -142,9 +142,9 @@
     <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\BiletController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\islemController.cs" />
     <Compile Include="Controllers\KayitOlController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OtobusController.cs" />
     <Compile Include="Controllers\PanelimController.cs" />
     <Compile Include="Controllers\UyeController.cs" />
     <Compile Include="Controllers\vitrinController.cs" />
@@ -192,6 +192,7 @@
       <DependentUpon>BiletAlEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\OtobusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE-3.0.4\.gitignore" />
@@ -2544,13 +2545,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Layout.cshtml" />
-    <Content Include="Views\Yazar\Index.cshtml" />
-    <Content Include="Views\Yazar\YazarEkle.cshtml" />
-    <Content Include="Views\Yazar\YazarGetir.cshtml" />
     <Content Include="Views\Uye\Index.cshtml" />
     <Content Include="Views\Uye\UyeEkle.cshtml" />
     <Content Include="Views\Uye\UyeGetir.cshtml" />
-    <Content Include="Views\islem\Index.cshtml" />
     <Content Include="web\.browserslistrc" />
     <Content Include="web\.gitignore" />
     <Content Include="web\.travis.yml" />
@@ -2587,11 +2584,6 @@
     <Content Include="web\vendor\jquery\jquery.min.map" />
     <Content Include="web\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\vitrin\Index.cshtml" />
-    <Content Include="Views\istatistik\Index.cshtml" />
-    <Content Include="Views\istatistik\Hava.cshtml" />
-    <Content Include="Views\istatistik\HavaKart.cshtml" />
-    <Content Include="Views\istatistik\Galeri.cshtml" />
-    <Content Include="Views\istatistik\LinqKart.cshtml" />
     <Content Include="web3\fonts\fontawesome-webfont.eot" />
     <Content Include="web3\fonts\fontawesome-webfont.ttf" />
     <Content Include="web3\fonts\fontawesome-webfont.woff" />
@@ -2643,20 +2635,14 @@
     <Content Include="webpanel\vendor\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="webpanel\vendor\jquery\jquery.min.map" />
     <Content Include="webpanel\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Panelim\Index.cshtml" />
-    <Content Include="Views\Panelim\Kitaplarım.cshtml" />
-    <Content Include="Views\Panelim\Kitaplarim.cshtml" />
-    <Content Include="Views\Yazar\YazarKitaplar.cshtml" />
     <Content Include="Views\Uye\UyeKitapGecmis.cshtml" />
-    <Content Include="Views\Panelim\Duyurular.cshtml" />
-    <Content Include="Views\Panelim\Partial1.cshtml" />
-    <Content Include="Views\Panelim\Partial2.cshtml" />
     <Content Include="Views\AdminLogin\Login.cshtml" />
+    <Content Include="Views\Bilet\BiletGoster.cshtml" />
+    <Content Include="Views\Otobus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\Bilet\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

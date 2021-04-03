@@ -28,7 +28,7 @@ namespace BiletAl.Controllers
             {
                 FormsAuthentication.SetAuthCookie(bilgiler.Admin, false);
                 Session["Admin"] = bilgiler.Admin.ToString();
-                return RedirectToAction("Index", "Kategori");
+                return RedirectToAction("Login", "BiletGoster");
             }
             else
             {

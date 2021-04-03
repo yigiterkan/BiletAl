@@ -21,12 +21,11 @@ namespace BiletAl.Models.Entity
         }
     
         public byte OtobusID { get; set; }
-        public Nullable<byte> KoltukSayısı { get; set; }
-        public Nullable<byte> KalkisLokasyonID { get; set; }
-        public Nullable<byte> VarisLokasyonID { get; set; }
-        public Nullable<System.DateTime> SeferTarihi { get; set; }
-        public byte[] SeferSaati { get; set; }
-        public Nullable<decimal> AcilisFiyati { get; set; }
+        public int KoltukSayisi { get; set; }
+        public byte KalkisLokasyonID { get; set; }
+        public byte VarisLokasyonID { get; set; }
+        public System.DateTime SeferTarihi { get; set; }
+        public decimal AcilisFiyati { get; set; }
     
         public virtual TBLLokasyon TBLLokasyon { get; set; }
         public virtual TBLLokasyon TBLLokasyon1 { get; set; }

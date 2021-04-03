@@ -26,7 +26,7 @@ namespace BiletAl.Controllers
             {
                 FormsAuthentication.SetAuthCookie(bilgiler.Eposta, false);
                 Session["Eposta"] = bilgiler.Eposta.ToString();
-                return RedirectToAction("Index", "Panelim");
+                return RedirectToAction("Index", "Otobus");
             }
             else
             {

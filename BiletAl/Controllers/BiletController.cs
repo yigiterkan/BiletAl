@@ -11,14 +11,16 @@ namespace BiletAl.Controllers
     public class BiletController : Controller
     {
         // GET: Bilet
-        
+        DBBILETALEntities db = new DBBILETALEntities();
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult BiletGoster()
+        public ActionResult BiletGoster(int otobusId)
         {
-
+            var biletler = from k in db.TBLBilet select k;
+            var otobusIdBiletler = biletler.Where(x => x.OtobusID == otobusId).ToList();
+            return View(otobusIdBiletler);
         }
     }
 }

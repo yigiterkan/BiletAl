@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e36377ef7d3443eb95062449ad33f30b" Name="Diagram1">
-        <EntityTypeShape EntityType="DBBILETALModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBBILETALModel.TBLAdmin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBBILETALModel.TBLKullanici" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBBILETALModel.TBLLokasyon" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBBILETALModel.TBLOtobüs" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBBILETALModel.TBLBilet" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLKullanici" ManuallyRouted="false" />
-        <AssociationConnector Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon" ManuallyRouted="false" />
-        <AssociationConnector Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon1" ManuallyRouted="false" />
-        <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs" ManuallyRouted="false" />
+      <Diagram DiagramId="7c08102529bb40dd95d49fc5b18724cc" Name="Diagram1">
+        <EntityTypeShape EntityType="DBBILETALModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DBBILETALModel.TBLAdmin" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBBILETALModel.TBLKullanici" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="DBBILETALModel.TBLLokasyon" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="DBBILETALModel.TBLOtobüs" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DBBILETALModel.TBLBilet" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLKullanici" />
+        <AssociationConnector Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon" />
+        <AssociationConnector Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon1" />
+        <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

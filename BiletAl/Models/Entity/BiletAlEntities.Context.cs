@@ -15,10 +15,10 @@ namespace BiletAl.Models.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DBBILETALEntities : DbContext
+    public partial class DBBILETALEntities1 : DbContext
     {
-        public DBBILETALEntities()
-            : base("name=DBBILETALEntities")
+        public DBBILETALEntities1()
+            : base("name=DBBILETALEntities1")
         {
         }
     
