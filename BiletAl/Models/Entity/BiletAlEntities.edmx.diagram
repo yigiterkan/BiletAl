@@ -7,14 +7,14 @@
       <Diagram DiagramId="7c08102529bb40dd95d49fc5b18724cc" Name="Diagram1">
         <EntityTypeShape EntityType="DBBILETALModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
         <EntityTypeShape EntityType="DBBILETALModel.TBLAdmin" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBBILETALModel.TBLBilet" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="DBBILETALModel.TBLKullanici" Width="1.5" PointX="3" PointY="5.25" />
         <EntityTypeShape EntityType="DBBILETALModel.TBLLokasyon" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="DBBILETALModel.TBLOtobüs" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="DBBILETALModel.TBLBilet" Width="1.5" PointX="5.25" PointY="1.125" />
         <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLKullanici" />
+        <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs" />
         <AssociationConnector Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon" />
         <AssociationConnector Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon1" />
-        <AssociationConnector Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

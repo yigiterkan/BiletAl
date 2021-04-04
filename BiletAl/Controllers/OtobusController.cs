@@ -2,6 +2,7 @@
 using BiletAl.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,7 +20,7 @@ namespace BiletAl.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string varisLokasyonId, string kalkisLokasyonId, string seferTarihi)
+        public ActionResult Index(int varisLokasyonId, int kalkisLokasyonId, DateTime seferTarihi)
         {
             var otobusler= from Otobus in db.TBLOtobüs
                            join VarisLokasyonu in db.TBLLokasyon on Otobus.VarisLokasyonID equals VarisLokasyonu.LokasyonID
@@ -28,18 +29,17 @@ namespace BiletAl.Controllers
                            { 
                                OtobusID=Otobus.OtobusID,
                                KoltukSayisi=Otobus.KoltukSayisi,
-                               AcilisFiyati=Otobus.AcilisFiyati,
+                               AcilisFiyati=Otobus.AcilisFiyati,                             
                                KalkisLokasyon=KalkisLokasyonu.LokasyonAdı,
                                VarisLokasyon=VarisLokasyonu.LokasyonAdı,
+                               VarisLokasyonID=VarisLokasyonu.LokasyonID,
+                               KalkisLokasyonID=KalkisLokasyonu.LokasyonID,
                                SeferTarihi=Otobus.SeferTarihi
                            };
-
-            var filtrelenmisOtobusler = otobusler.Where(x => x.KalkisLokasyon == kalkisLokasyonId &&
-                                                             x.VarisLokasyon == varisLokasyonId &&
-                                                             x.SeferTarihi.ToString() == seferTarihi).ToList();
+            var filtrelenmisOtobusler = otobusler.Where(x => x.KalkisLokasyonID == kalkisLokasyonId &&
+                                                             x.VarisLokasyonID == varisLokasyonId &&
+                                                            DbFunctions.TruncateTime(x.SeferTarihi) == seferTarihi.Date).ToList();
             return View(filtrelenmisOtobusler);
-        }
-
-       
+        } 
     }
 }

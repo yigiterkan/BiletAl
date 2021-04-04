@@ -17,6 +17,7 @@
     </div>
 }
 
+
 <table class="table table-bordered">
     <tr>
         <th>SeferID</th>
@@ -25,19 +26,26 @@
         <th>Koltuk Numarası</th>
         <th>Otobüs ID</th>
         <th>Sil</th>
-        <th>Güncelle</th>
+       
     </tr>
     @foreach (var k in Model)
     {
         <tr>
-            <td>@k.SeferID</td>
-            <td>@k.YolcuID</td>
-            <td>@k.SatisFiyati</td>
-            <td>@k.KoltukNo</td>
-            <td>@k.OtobusID</td>
-            @*<td><a href="/Kitap/KitapSil/@k.ID" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Kitap/KitapGetir/@k.ID" class="btn btn-success">Güncelle</a></td>*@
+            <form action="/Bilet/BiletSil" method="post">
 
+                @Html.Hidden("biletID", k.BiletID)
+                <td>@k.BiletID</td>
+                <td>@k.YolcuID</td>
+                <td>@k.SatisFiyati</td>
+                <td>@k.KoltukNo</td>
+                <td>@k.OtobusID</td>
+
+                <td>
+                    <p style="margin-top:10px;">
+                        <input type="submit" value="Sil" class="btn btn-success" />
+                    </p>
+                </td>
+            </form>
         </tr>
     }
 

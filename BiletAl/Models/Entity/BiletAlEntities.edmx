@@ -23,21 +23,15 @@
           <Property Name="Admin" Type="nvarchar" MaxLength="50" />
           <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TBLBilet">
           <Key>
-            <PropertyRef Name="SeferID" />
-            <PropertyRef Name="YolcuID" />
-            <PropertyRef Name="SatisFiyati" />
-            <PropertyRef Name="KoltukNo" />
-            <PropertyRef Name="OtobusID" />
+            <PropertyRef Name="BiletID" />
           </Key>
-          <Property Name="SeferID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BiletID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="YolcuID" Type="int" Nullable="false" />
           <Property Name="SatisFiyati" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="KoltukNo" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="OtobusID" Type="tinyint" Nullable="false" />
+          <Property Name="OtobusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TBLKullanici">
           <Key>
@@ -60,7 +54,7 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
           <Key>
             <PropertyRef Name="OtobusID" />
           </Key>
-          <Property Name="OtobusID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtobusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KoltukSayisi" Type="int" Nullable="false" />
           <Property Name="KalkisLokasyonID" Type="tinyint" Nullable="false" />
           <Property Name="VarisLokasyonID" Type="tinyint" Nullable="false" />
@@ -149,18 +143,10 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
         <EntityContainer Name="DBBILETALModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLAdmin" EntityType="Self.TBLAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLBilet" EntityType="Self.TBLBilet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLKullanici" EntityType="Self.TBLKullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLLokasyon" EntityType="Self.TBLLokasyon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLOtobüs" EntityType="Self.TBLOtobüs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLBilet" EntityType="Self.TBLBilet" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TBLBilet].[SeferID] AS [SeferID], 
-    [TBLBilet].[YolcuID] AS [YolcuID], 
-    [TBLBilet].[SatisFiyati] AS [SatisFiyati], 
-    [TBLBilet].[KoltukNo] AS [KoltukNo], 
-    [TBLBilet].[OtobusID] AS [OtobusID]
-    FROM [dbo].[TBLBilet] AS [TBLBilet]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_TBLBilet_TBLKullanici" Association="Self.FK_TBLBilet_TBLKullanici">
             <End Role="TBLKullanici" EntitySet="TBLKullanici" />
             <End Role="TBLBilet" EntitySet="TBLBilet" />
@@ -215,12 +201,16 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="sysdiagrams" EntityType="DBBILETALModel.sysdiagrams" />
           <EntitySet Name="TBLAdmin" EntityType="DBBILETALModel.TBLAdmin" />
+          <EntitySet Name="TBLBilet" EntityType="DBBILETALModel.TBLBilet" />
           <EntitySet Name="TBLKullanici" EntityType="DBBILETALModel.TBLKullanici" />
           <EntitySet Name="TBLLokasyon" EntityType="DBBILETALModel.TBLLokasyon" />
           <EntitySet Name="TBLOtobüs" EntityType="DBBILETALModel.TBLOtobüs" />
-          <EntitySet Name="TBLBilet" EntityType="DBBILETALModel.TBLBilet" />
           <AssociationSet Name="FK_TBLBilet_TBLKullanici" Association="DBBILETALModel.FK_TBLBilet_TBLKullanici">
             <End Role="TBLKullanici" EntitySet="TBLKullanici" />
+            <End Role="TBLBilet" EntitySet="TBLBilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLBilet_TBLOtobüs" Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs">
+            <End Role="TBLOtobüs" EntitySet="TBLOtobüs" />
             <End Role="TBLBilet" EntitySet="TBLBilet" />
           </AssociationSet>
           <AssociationSet Name="FK_TBLOtobüs_TBLLokasyon" Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon">
@@ -231,11 +221,7 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
             <End Role="TBLLokasyon" EntitySet="TBLLokasyon" />
             <End Role="TBLOtobüs" EntitySet="TBLOtobüs" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLBilet_TBLOtobüs" Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs">
-            <End Role="TBLOtobüs" EntitySet="TBLOtobüs" />
-            <End Role="TBLBilet" EntitySet="TBLBilet" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -265,6 +251,18 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
           <Property Name="Admin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TBLBilet">
+          <Key>
+            <PropertyRef Name="BiletID" />
+          </Key>
+          <Property Name="BiletID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YolcuID" Type="Int32" Nullable="false" />
+          <Property Name="SatisFiyati" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="KoltukNo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OtobusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBLKullanici" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici" FromRole="TBLBilet" ToRole="TBLKullanici" />
+          <NavigationProperty Name="TBLOtobüs" Relationship="DBBILETALModel.FK_TBLBilet_TBLOtobüs" FromRole="TBLBilet" ToRole="TBLOtobüs" />
+        </EntityType>
         <EntityType Name="TBLKullanici">
           <Key>
             <PropertyRef Name="YolcuID" />
@@ -289,31 +287,15 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
           <Key>
             <PropertyRef Name="OtobusID" />
           </Key>
-          <Property Name="OtobusID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtobusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KoltukSayisi" Type="Int32" Nullable="false" />
           <Property Name="KalkisLokasyonID" Type="Byte" Nullable="false" />
           <Property Name="VarisLokasyonID" Type="Byte" Nullable="false" />
           <Property Name="SeferTarihi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AcilisFiyati" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="TBLBilet" Relationship="DBBILETALModel.FK_TBLBilet_TBLOtobüs" FromRole="TBLOtobüs" ToRole="TBLBilet" />
           <NavigationProperty Name="TBLLokasyon" Relationship="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon" FromRole="TBLOtobüs" ToRole="TBLLokasyon" />
           <NavigationProperty Name="TBLLokasyon1" Relationship="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon1" FromRole="TBLOtobüs" ToRole="TBLLokasyon" />
-          <NavigationProperty Name="TBLBilet" Relationship="DBBILETALModel.FK_TBLBilet_TBLOtobüs" FromRole="TBLOtobüs" ToRole="TBLBilet" />
-        </EntityType>
-        <EntityType Name="TBLBilet">
-          <Key>
-            <PropertyRef Name="SeferID" />
-            <PropertyRef Name="YolcuID" />
-            <PropertyRef Name="SatisFiyati" />
-            <PropertyRef Name="KoltukNo" />
-            <PropertyRef Name="OtobusID" />
-          </Key>
-          <Property Name="SeferID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="YolcuID" Type="Int32" Nullable="false" />
-          <Property Name="SatisFiyati" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="KoltukNo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="OtobusID" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="TBLKullanici" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici" FromRole="TBLBilet" ToRole="TBLKullanici" />
-          <NavigationProperty Name="TBLOtobüs" Relationship="DBBILETALModel.FK_TBLBilet_TBLOtobüs" FromRole="TBLBilet" ToRole="TBLOtobüs" />
         </EntityType>
         <Association Name="FK_TBLBilet_TBLKullanici">
           <End Type="DBBILETALModel.TBLKullanici" Role="TBLKullanici" Multiplicity="1" />
@@ -324,6 +306,18 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
             </Principal>
             <Dependent Role="TBLBilet">
               <PropertyRef Name="YolcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLBilet_TBLOtobüs">
+          <End Type="DBBILETALModel.TBLOtobüs" Role="TBLOtobüs" Multiplicity="1" />
+          <End Type="DBBILETALModel.TBLBilet" Role="TBLBilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOtobüs">
+              <PropertyRef Name="OtobusID" />
+            </Principal>
+            <Dependent Role="TBLBilet">
+              <PropertyRef Name="OtobusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -351,19 +345,7 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLBilet_TBLOtobüs">
-          <End Type="DBBILETALModel.TBLOtobüs" Role="TBLOtobüs" Multiplicity="1" />
-          <End Type="DBBILETALModel.TBLBilet" Role="TBLBilet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBLOtobüs">
-              <PropertyRef Name="OtobusID" />
-            </Principal>
-            <Dependent Role="TBLBilet">
-              <PropertyRef Name="OtobusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -413,6 +395,17 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TBLBilet">
+            <EntityTypeMapping TypeName="DBBILETALModel.TBLBilet">
+              <MappingFragment StoreEntitySet="TBLBilet">
+                <ScalarProperty Name="OtobusID" ColumnName="OtobusID" />
+                <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
+                <ScalarProperty Name="SatisFiyati" ColumnName="SatisFiyati" />
+                <ScalarProperty Name="YolcuID" ColumnName="YolcuID" />
+                <ScalarProperty Name="BiletID" ColumnName="BiletID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TBLKullanici">
             <EntityTypeMapping TypeName="DBBILETALModel.TBLKullanici">
               <MappingFragment StoreEntitySet="TBLKullanici">
@@ -444,18 +437,7 @@ warning 6002: The table/view 'DBBILETAL.dbo.TBLBilet' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TBLBilet">
-            <EntityTypeMapping TypeName="DBBILETALModel.TBLBilet">
-              <MappingFragment StoreEntitySet="TBLBilet">
-                <ScalarProperty Name="OtobusID" ColumnName="OtobusID" />
-                <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
-                <ScalarProperty Name="SatisFiyati" ColumnName="SatisFiyati" />
-                <ScalarProperty Name="YolcuID" ColumnName="YolcuID" />
-                <ScalarProperty Name="SeferID" ColumnName="SeferID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

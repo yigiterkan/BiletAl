@@ -12,31 +12,27 @@
             <p style="margin-top:15px;">Kalkış Lokasyonu</p>
             <div style="margin-top:15px; ">
                 <select id="KalkisLokasyonu" name="KalkisLokasyonID">
-                    <option value="0">İstanbul</option>
-                    <option value="1">İzmir</option>
-                    <option value="2">Ankara</option>
-                    <option value="3">Edirne</option>
+                    <option value="1">İstanbul</option>
+                    <option value="2">İzmir</option>
+                    <option value="3">Ankara</option>
+                    <option value="4">Edirne</option>
                 </select>
             </div>
 
             <p style="margin-top:15px;">Varış Lokasyonu</p>
             <div style="margin-top:15px;">
                 <select id="VarisLokasyonu" name="VarisLokasyonID">
-                    <option value="0">İstanbul</option>
-                    <option value="1">İzmir</option>
-                    <option value="2">Ankara</option>
-                    <option value="3">Edirne</option>
+                    <option value="1">İstanbul</option>
+                    <option value="2">İzmir</option>
+                    <option value="3">Ankara</option>
+                    <option value="4">Edirne</option>
                 </select>
             </div>
             <p style="margin-top:15px;">Tarih</p>
-            <input type="datetime-local" id="seferTarihi" name="SeferTarihi"> @*datetime'ı lokal alıyor onu kullanıcı seçmeli*@
-            <p style="margin-top:10px;"><input type="submit" value="Submit" class="btn btn-success" /> </p>
+            <input type="datetime-local" id="seferTarihi" name="SeferTarihi"> 
+            <p style="margin-top:10px;"><input type="submit" value="Sefer Sorgula" class="btn btn-success" /> </p>
         </fieldset>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="margin-top: 3px;">
-            <button id="listele" type="button" class="btn btn-primary btn-block btn-sm" onclick="mws.seferler.ara()">
-                <i class="glyphicon glyphicon-search"></i>&nbsp;<b>SEFER ARA</b>
-            </button>
-        </div>
+       
     </form>
 </div>
 @if (Model !=null)
@@ -49,17 +45,30 @@
         <th>Varış Lokasyonu</th>
         <th>Sefer Tarihi</th>
         <th>Açılış Fiyatı</th>
+        <th>
+
+        </th>
         
     </tr>
     @foreach (var k in Model)
     {
         <tr>
-            <td>@k.OtobusID</td>
-            <td>@k.KoltukSayisi</td>
-            <td>@k.KalkisLokasyon</td>
-            <td>@k.VarisLokasyon</td>
-            <td>@k.SeferTarihi</td>
-            <td>@k.AcilisFiyati</td>
+            <form action="/Bilet/BiletAl" method="post" >
+
+                @Html.Hidden("otobusID",k.OtobusID)
+                <td>@k.OtobusID</td>
+                <td>@k.KoltukSayisi</td>
+                <td>@k.KalkisLokasyon</td>
+                <td>@k.VarisLokasyon</td>
+                <td>@k.SeferTarihi</td>
+                <td>@k.AcilisFiyati</td>    
+                
+                <td> 
+                    <p style="margin-top:10px;">
+                    <input type="submit" value="Satın Al" class="btn btn-success" />
+                    </p>
+                </td>
+            </form>
         </tr>
     }
 </table>

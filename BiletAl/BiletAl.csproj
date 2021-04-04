@@ -2639,6 +2639,8 @@
     <Content Include="Views\AdminLogin\Login.cshtml" />
     <Content Include="Views\Bilet\BiletGoster.cshtml" />
     <Content Include="Views\Otobus\Index.cshtml" />
+    <Content Include="Views\Bilet\BiletAl.cshtml" />
+    <Content Include="Views\Bilet\BiletSil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
