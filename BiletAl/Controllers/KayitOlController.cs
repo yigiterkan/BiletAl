@@ -13,7 +13,7 @@ namespace BiletAl.Controllers
     {
         // GET: KayitOl
 
-        private DBBILETALEntities db = new DBBILETALEntities();
+        private DBBILETALEntities1 db = new DBBILETALEntities1();
 
         [HttpGet]
         public ActionResult Kayit()

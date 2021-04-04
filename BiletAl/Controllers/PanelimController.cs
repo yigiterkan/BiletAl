@@ -14,7 +14,7 @@ namespace BiletAl.Controllers
     {
 
         // GET: Panelim
-        DBBILETALEntities db = new DBBILETALEntities();
+        DBBILETALEntities1 db = new DBBILETALEntities1();
         [HttpGet]
       
         public ActionResult Index()

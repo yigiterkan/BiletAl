@@ -13,7 +13,7 @@ namespace BiletAl.Controllers
     public class UyeController : Controller
     {
         // GET: Uye
-        DBBILETALEntities db = new DBBILETALEntities();
+        DBBILETALEntities1 db = new DBBILETALEntities1();
         public ActionResult Index(int sayfa=1)
         {
             var degerler = db.TBLKullanici.ToList();          

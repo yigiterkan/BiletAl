@@ -12,7 +12,7 @@ namespace BiletAl.Controllers
     public class vitrinController : Controller
     {
         // GET: vitrin
-        DBBILETALEntities db = new DBBILETALEntities();
+        DBBILETALEntities1 db = new DBBILETALEntities1();
         //[HttpGet]
         public ActionResult Index()
         {

@@ -12,7 +12,14 @@ namespace BiletAl.Controllers
     {
         // GET: Otobus
         DBBILETALEntities1 db = new DBBILETALEntities1();
+        [HttpGet]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(string varisLokasyonId, string kalkisLokasyonId, string seferTarihi)
         {
             var otobusler= from Otobus in db.TBLOtobüs
                            join VarisLokasyonu in db.TBLLokasyon on Otobus.VarisLokasyonID equals VarisLokasyonu.LokasyonID
@@ -26,7 +33,13 @@ namespace BiletAl.Controllers
                                VarisLokasyon=VarisLokasyonu.LokasyonAdı,
                                SeferTarihi=Otobus.SeferTarihi
                            };
-            return View(otobusler.ToList());
+
+            var filtrelenmisOtobusler = otobusler.Where(x => x.KalkisLokasyon == kalkisLokasyonId &&
+                                                             x.VarisLokasyon == varisLokasyonId &&
+                                                             x.SeferTarihi.ToString() == seferTarihi).ToList();
+            return View(filtrelenmisOtobusler);
         }
+
+       
     }
 }

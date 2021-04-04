@@ -11,7 +11,7 @@ namespace BiletAl.Controllers
     public class BiletController : Controller
     {
         // GET: Bilet
-        DBBILETALEntities db = new DBBILETALEntities();
+        DBBILETALEntities1 db = new DBBILETALEntities1();
         public ActionResult Index()
         {
             return View();

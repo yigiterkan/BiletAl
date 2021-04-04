@@ -13,7 +13,7 @@ namespace BiletAl.Controllers
 
     public class AdminLoginController : Controller
     {
-        DBBILETALEntities db = new DBBILETALEntities();
+        DBBILETALEntities1 db = new DBBILETALEntities1();
         // GET: AdminLogin
         public ActionResult Login()
         {

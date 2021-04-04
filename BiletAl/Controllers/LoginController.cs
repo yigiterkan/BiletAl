@@ -13,7 +13,7 @@ namespace BiletAl.Controllers
     {
 
         // GET: Login
-        DBBILETALEntities db = new DBBILETALEntities();
+        DBBILETALEntities1 db = new DBBILETALEntities1();
         public ActionResult GirisYap()
         {
             return View();

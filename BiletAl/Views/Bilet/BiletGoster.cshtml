@@ -1,4 +1,7 @@
-﻿@model BiletAl.Models.Entity.TBLBilet
+﻿@using BiletAl.Models.Entity
+@model List<TBLBilet>
+@*@model BiletAl.Models.Entity.TBLBilet
+    @using BiletAl.Models.Entity*@
 @{
     ViewBag.Title = "BiletGoster";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -6,3 +9,36 @@
 
 <h2>BiletGoster</h2>
 
+@using (Html.BeginForm("BiletGoster", "Bilet", FormMethod.Get))
+{
+    <div style="margin-top:15px; margin-bottom:15px;">
+        <b>Otobüsler: </b> @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </div>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>SeferID</th>
+        <th>YolcuID</th>
+        <th>Satış Fiyatı</th>
+        <th>Koltuk Numarası</th>
+        <th>Otobüs ID</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>@k.SeferID</td>
+            <td>@k.YolcuID</td>
+            <td>@k.SatisFiyati</td>
+            <td>@k.KoltukNo</td>
+            <td>@k.OtobusID</td>
+            @*<td><a href="/Kitap/KitapSil/@k.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Kitap/KitapGetir/@k.ID" class="btn btn-success">Güncelle</a></td>*@
+
+        </tr>
+    }
+
+</table>

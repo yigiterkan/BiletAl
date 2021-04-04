@@ -1,8 +1,66 @@
-﻿@model List<BiletAl.ViewModels.OtobusViewModel> 
+﻿@model List<BiletAl.ViewModels.OtobusViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 <h2>Otobüsler</h2>
+<div style="margin-top:15px; background-color:azure; display:block; position:relative;">
+   
+    <form action="/Otobus/Index" method="post" class="form-group" style="padding:5px; position:relative;">
+        <fieldset>
+            <p style="margin-top:15px;">Kalkış Lokasyonu</p>
+            <div style="margin-top:15px; ">
+                <select id="KalkisLokasyonu" name="KalkisLokasyonID">
+                    <option value="0">İstanbul</option>
+                    <option value="1">İzmir</option>
+                    <option value="2">Ankara</option>
+                    <option value="3">Edirne</option>
+                </select>
+            </div>
 
+            <p style="margin-top:15px;">Varış Lokasyonu</p>
+            <div style="margin-top:15px;">
+                <select id="VarisLokasyonu" name="VarisLokasyonID">
+                    <option value="0">İstanbul</option>
+                    <option value="1">İzmir</option>
+                    <option value="2">Ankara</option>
+                    <option value="3">Edirne</option>
+                </select>
+            </div>
+            <p style="margin-top:15px;">Tarih</p>
+            <input type="datetime-local" id="seferTarihi" name="SeferTarihi"> @*datetime'ı lokal alıyor onu kullanıcı seçmeli*@
+            <p style="margin-top:10px;"><input type="submit" value="Submit" class="btn btn-success" /> </p>
+        </fieldset>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="margin-top: 3px;">
+            <button id="listele" type="button" class="btn btn-primary btn-block btn-sm" onclick="mws.seferler.ara()">
+                <i class="glyphicon glyphicon-search"></i>&nbsp;<b>SEFER ARA</b>
+            </button>
+        </div>
+    </form>
+</div>
+@if (Model !=null)
+{
+    <table class="table table-bordered">
+    <tr>
+        <th>OtobüsID</th>
+        <th>Koltuk Sayısı</th>
+        <th>Kalkış Lokasyonu</th>
+        <th>Varış Lokasyonu</th>
+        <th>Sefer Tarihi</th>
+        <th>Açılış Fiyatı</th>
+        
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>@k.OtobusID</td>
+            <td>@k.KoltukSayisi</td>
+            <td>@k.KalkisLokasyon</td>
+            <td>@k.VarisLokasyon</td>
+            <td>@k.SeferTarihi</td>
+            <td>@k.AcilisFiyati</td>
+        </tr>
+    }
+</table>
+}
