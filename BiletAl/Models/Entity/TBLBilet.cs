@@ -18,7 +18,7 @@ namespace BiletAl.Models.Entity
         public int KullaniciID { get; set; }
         public Nullable<int> YolcuID { get; set; }
         public decimal SatisFiyati { get; set; }
-        public string KoltukNo { get; set; }
+        public int KoltukNo { get; set; }
         public int OtobusID { get; set; }
     
         public virtual TBLKullanici TBLKullanici { get; set; }

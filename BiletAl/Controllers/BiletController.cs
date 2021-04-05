@@ -31,7 +31,7 @@ namespace BiletAl.Controllers
            
             for (int i = 1; i <= otobus.KoltukSayisi; i++)
             {
-                if (satilmisKoltuklar.Contains(i.ToString()) == false)
+                if (satilmisKoltuklar.Contains(i) == false)
                 {
                     satilmamisKoltuklar.Add(i);
                 }
@@ -45,7 +45,7 @@ namespace BiletAl.Controllers
         }
      
         [HttpPost]
-        public ActionResult BiletAl(int otobusID,string yolcuAdi, string yolcuSoyadi, string koltukNo)
+        public ActionResult BiletAl(int otobusID,string yolcuAdi, string yolcuSoyadi, int koltukNo)
         {
             var otobus = db.TBLOtobüs.FirstOrDefault(o => o.OtobusID == otobusID);
             string eposta = Session["Eposta"].ToString();
@@ -70,7 +70,7 @@ namespace BiletAl.Controllers
                 KullaniciID=kullanici.KullaniciID,
             });
             db.SaveChanges();
-            return View();
+            return RedirectToAction("BiletAlBasarili");
         }
         [HttpGet]
         public ActionResult BiletSil()
@@ -83,6 +83,10 @@ namespace BiletAl.Controllers
             var bilet = db.TBLBilet.FirstOrDefault(o => o.BiletID == biletID);
             db.TBLBilet.Remove(bilet);
             db.SaveChanges();
+            return View();
+        }
+        public ActionResult BiletAlBasarili()
+        {
             return View();
         }
     }

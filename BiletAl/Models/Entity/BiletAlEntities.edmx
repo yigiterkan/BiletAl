@@ -31,7 +31,7 @@
           <Property Name="KullaniciID" Type="int" Nullable="false" />
           <Property Name="YolcuID" Type="int" />
           <Property Name="SatisFiyati" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="KoltukNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="KoltukNo" Type="int" Nullable="false" />
           <Property Name="OtobusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TBLKullanici">
@@ -290,7 +290,7 @@
           <Property Name="KullaniciID" Type="Int32" Nullable="false" />
           <Property Name="YolcuID" Type="Int32" />
           <Property Name="SatisFiyati" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="KoltukNo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KoltukNo" Type="Int32" Nullable="false" />
           <Property Name="OtobusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TBLKullanici" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici1" FromRole="TBLBilet" ToRole="TBLKullanici" />
           <NavigationProperty Name="TBLOtobüs" Relationship="DBBILETALModel.FK_TBLBilet_TBLOtobüs" FromRole="TBLBilet" ToRole="TBLOtobüs" />
