@@ -145,7 +145,6 @@
     <Compile Include="Controllers\KayitOlController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OtobusController.cs" />
-    <Compile Include="Controllers\PanelimController.cs" />
     <Compile Include="Controllers\UyeController.cs" />
     <Compile Include="Controllers\vitrinController.cs" />
     <Compile Include="Global.asax.cs">

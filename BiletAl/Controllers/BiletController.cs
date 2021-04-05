@@ -78,7 +78,7 @@ namespace BiletAl.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult BiletSil(int biletID) // bilet ID'ye göre değil de yolcu ID'ye göre sileceğim
+        public ActionResult BiletSil(int biletID) 
         {
             var bilet = db.TBLBilet.FirstOrDefault(o => o.BiletID == biletID);
             db.TBLBilet.Remove(bilet);
