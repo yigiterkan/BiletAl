@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BiletAl.Models.Entity;
-
+using BiletAl.ViewModels;
 
 namespace BiletAl.Controllers
 {
@@ -23,25 +23,51 @@ namespace BiletAl.Controllers
             return View(otobusIdBiletler);
         }
 
-        public ActionResult BiletAl()
+        public ActionResult BiletAl(int otobusID)
         {
-            return View();
+            var otobus = db.TBLOtobüs.FirstOrDefault(o => o.OtobusID == otobusID);
+            var satilmisKoltuklar = db.TBLBilet.Where(x => x.OtobusID == otobusID).Select(x=>x.KoltukNo).ToList();
+            List<int> satilmamisKoltuklar = new List<int>();
+           
+            for (int i = 1; i <= otobus.KoltukSayisi; i++)
+            {
+                if (satilmisKoltuklar.Contains(i.ToString()) == false)
+                {
+                    satilmamisKoltuklar.Add(i);
+                }
+            }
+            var model = new BiletAlViewModel()
+            {
+                SatilmamisKoltuklar = satilmamisKoltuklar,
+                OtobusID = otobusID
+            };
+            return View(model);
         }
      
         [HttpPost]
-        public ActionResult BiletAl(int otobusID )
+        public ActionResult BiletAl(int otobusID,string yolcuAdi, string yolcuSoyadi, string koltukNo)
         {
             var otobus = db.TBLOtobüs.FirstOrDefault(o => o.OtobusID == otobusID);
             string eposta = Session["Eposta"].ToString();
-            var yolcu = db.TBLKullanici.FirstOrDefault(y => y.Eposta ==eposta);
+            var kullanici = db.TBLKullanici.FirstOrDefault(y => y.Eposta == eposta);
             int satilmisBiletAdeti = db.TBLBilet.Where(x => x.OtobusID == otobusID).Count();
             decimal satisFiyati = otobus.AcilisFiyati +
                 otobus.AcilisFiyati*((satilmisBiletAdeti - satilmisBiletAdeti % 5) / 5) *0.1m;
+            
+            var yolcu = new TBLYolcu {
+
+                YolcuAdı = yolcuAdi,
+                YolcuSoyadı = yolcuSoyadi,
+            };
+
+            db.TBLYolcu.Add(yolcu);
+
             db.TBLBilet.Add(new TBLBilet { 
-                KoltukNo = new Random().Next(1, 20).ToString(),
+                KoltukNo = koltukNo,
                 OtobusID=otobusID,
                 SatisFiyati=satisFiyati,
-                YolcuID=yolcu.YolcuID
+                YolcuID=yolcu.YolcuID,
+                KullaniciID=kullanici.KullaniciID,
             });
             db.SaveChanges();
             return View();
@@ -52,7 +78,7 @@ namespace BiletAl.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult BiletSil(int biletID)
+        public ActionResult BiletSil(int biletID) // bilet ID'ye göre değil de yolcu ID'ye göre sileceğim
         {
             var bilet = db.TBLBilet.FirstOrDefault(o => o.BiletID == biletID);
             db.TBLBilet.Remove(bilet);

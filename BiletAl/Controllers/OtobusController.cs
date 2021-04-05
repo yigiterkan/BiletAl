@@ -16,6 +16,7 @@ namespace BiletAl.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+
             return View();
         }
 

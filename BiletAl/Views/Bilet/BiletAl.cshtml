@@ -1,8 +1,39 @@
-﻿
+﻿@model BiletAl.ViewModels.BiletAlViewModel
+
 @{
     ViewBag.Title = "BiletAl";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Bilet Başarıyla Alındı</h2>
+<h2>Bilet Satın Al</h2>
 
+<div style="margin-top:15px; background-color:azure; display:block; position:relative;">
+    <form class="form-group" action="/Bilet/BiletAlBasarili" method="post" class="form-group" style="padding:5px; position:relative;">
+
+        @Html.Hidden("otobusID", Model.OtobusID)
+        <div>
+            <p style="margin-top:15px;">Yolcu Adı</p>
+            <input type="text" id="yolcuAdi" name="yolcuAdi" />
+        </div>
+
+
+        <div>
+            <p style="margin-top:15px;">Yolcu Soyadı</p>
+            <input type="text" id="yolcusoyadi" name="yolcusoyadi" />
+        </div>
+
+        <div style="margin-top:15px;">
+            <p style="margin-top:15px;">Koltuk No:</p>
+            <select id="koltukNo" name="koltukNo">
+                @foreach (var item in Model.SatilmamisKoltuklar)
+                {
+                    <option value="@item">@item</option>
+
+                }
+            </select>
+        </div>
+        <p style="margin-top:10px;">
+            <input type="submit" value="Satın Al" class="btn btn-success" />
+        </p>
+    </form>
+</div>

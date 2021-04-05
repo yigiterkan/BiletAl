@@ -28,16 +28,17 @@
             <PropertyRef Name="BiletID" />
           </Key>
           <Property Name="BiletID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="YolcuID" Type="int" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="YolcuID" Type="int" />
           <Property Name="SatisFiyati" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="KoltukNo" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="OtobusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TBLKullanici">
           <Key>
-            <PropertyRef Name="YolcuID" />
+            <PropertyRef Name="KullaniciID" />
           </Key>
-          <Property Name="YolcuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Soyad" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Eposta" Type="varchar" MaxLength="100" Nullable="false" />
@@ -61,15 +62,23 @@
           <Property Name="SeferTarihi" Type="datetime" Nullable="false" />
           <Property Name="AcilisFiyati" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
-        <Association Name="FK_TBLBilet_TBLKullanici">
+        <EntityType Name="TBLYolcu">
+          <Key>
+            <PropertyRef Name="YolcuID" />
+          </Key>
+          <Property Name="YolcuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YolcuAdı" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="YolcuSoyadı" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TBLBilet_TBLKullanici1">
           <End Role="TBLKullanici" Type="Self.TBLKullanici" Multiplicity="1" />
           <End Role="TBLBilet" Type="Self.TBLBilet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLKullanici">
-              <PropertyRef Name="YolcuID" />
+              <PropertyRef Name="KullaniciID" />
             </Principal>
             <Dependent Role="TBLBilet">
-              <PropertyRef Name="YolcuID" />
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -82,6 +91,18 @@
             </Principal>
             <Dependent Role="TBLBilet">
               <PropertyRef Name="OtobusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLBilet_TBLYolcu">
+          <End Role="TBLYolcu" Type="Self.TBLYolcu" Multiplicity="0..1" />
+          <End Role="TBLBilet" Type="Self.TBLBilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLYolcu">
+              <PropertyRef Name="YolcuID" />
+            </Principal>
+            <Dependent Role="TBLBilet">
+              <PropertyRef Name="YolcuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -147,12 +168,17 @@
           <EntitySet Name="TBLKullanici" EntityType="Self.TBLKullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLLokasyon" EntityType="Self.TBLLokasyon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLOtobüs" EntityType="Self.TBLOtobüs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_TBLBilet_TBLKullanici" Association="Self.FK_TBLBilet_TBLKullanici">
+          <EntitySet Name="TBLYolcu" EntityType="Self.TBLYolcu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLBilet_TBLKullanici1" Association="Self.FK_TBLBilet_TBLKullanici1">
             <End Role="TBLKullanici" EntitySet="TBLKullanici" />
             <End Role="TBLBilet" EntitySet="TBLBilet" />
           </AssociationSet>
           <AssociationSet Name="FK_TBLBilet_TBLOtobüs" Association="Self.FK_TBLBilet_TBLOtobüs">
             <End Role="TBLOtobüs" EntitySet="TBLOtobüs" />
+            <End Role="TBLBilet" EntitySet="TBLBilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLBilet_TBLYolcu" Association="Self.FK_TBLBilet_TBLYolcu">
+            <End Role="TBLYolcu" EntitySet="TBLYolcu" />
             <End Role="TBLBilet" EntitySet="TBLBilet" />
           </AssociationSet>
           <AssociationSet Name="FK_TBLOtobüs_TBLLokasyon" Association="Self.FK_TBLOtobüs_TBLLokasyon">
@@ -205,12 +231,17 @@
           <EntitySet Name="TBLKullanici" EntityType="DBBILETALModel.TBLKullanici" />
           <EntitySet Name="TBLLokasyon" EntityType="DBBILETALModel.TBLLokasyon" />
           <EntitySet Name="TBLOtobüs" EntityType="DBBILETALModel.TBLOtobüs" />
-          <AssociationSet Name="FK_TBLBilet_TBLKullanici" Association="DBBILETALModel.FK_TBLBilet_TBLKullanici">
+          <EntitySet Name="TBLYolcu" EntityType="DBBILETALModel.TBLYolcu" />
+          <AssociationSet Name="FK_TBLBilet_TBLKullanici1" Association="DBBILETALModel.FK_TBLBilet_TBLKullanici1">
             <End Role="TBLKullanici" EntitySet="TBLKullanici" />
             <End Role="TBLBilet" EntitySet="TBLBilet" />
           </AssociationSet>
           <AssociationSet Name="FK_TBLBilet_TBLOtobüs" Association="DBBILETALModel.FK_TBLBilet_TBLOtobüs">
             <End Role="TBLOtobüs" EntitySet="TBLOtobüs" />
+            <End Role="TBLBilet" EntitySet="TBLBilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLBilet_TBLYolcu" Association="DBBILETALModel.FK_TBLBilet_TBLYolcu">
+            <End Role="TBLYolcu" EntitySet="TBLYolcu" />
             <End Role="TBLBilet" EntitySet="TBLBilet" />
           </AssociationSet>
           <AssociationSet Name="FK_TBLOtobüs_TBLLokasyon" Association="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon">
@@ -256,23 +287,25 @@
             <PropertyRef Name="BiletID" />
           </Key>
           <Property Name="BiletID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="YolcuID" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="YolcuID" Type="Int32" />
           <Property Name="SatisFiyati" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="KoltukNo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="OtobusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TBLKullanici" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici" FromRole="TBLBilet" ToRole="TBLKullanici" />
+          <NavigationProperty Name="TBLKullanici" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici1" FromRole="TBLBilet" ToRole="TBLKullanici" />
           <NavigationProperty Name="TBLOtobüs" Relationship="DBBILETALModel.FK_TBLBilet_TBLOtobüs" FromRole="TBLBilet" ToRole="TBLOtobüs" />
+          <NavigationProperty Name="TBLYolcu" Relationship="DBBILETALModel.FK_TBLBilet_TBLYolcu" FromRole="TBLBilet" ToRole="TBLYolcu" />
         </EntityType>
         <EntityType Name="TBLKullanici">
           <Key>
-            <PropertyRef Name="YolcuID" />
+            <PropertyRef Name="KullaniciID" />
           </Key>
-          <Property Name="YolcuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Eposta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Parola" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TBLBilet" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici" FromRole="TBLKullanici" ToRole="TBLBilet" />
+          <NavigationProperty Name="TBLBilet" Relationship="DBBILETALModel.FK_TBLBilet_TBLKullanici1" FromRole="TBLKullanici" ToRole="TBLBilet" />
         </EntityType>
         <EntityType Name="TBLLokasyon">
           <Key>
@@ -297,15 +330,24 @@
           <NavigationProperty Name="TBLLokasyon" Relationship="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon" FromRole="TBLOtobüs" ToRole="TBLLokasyon" />
           <NavigationProperty Name="TBLLokasyon1" Relationship="DBBILETALModel.FK_TBLOtobüs_TBLLokasyon1" FromRole="TBLOtobüs" ToRole="TBLLokasyon" />
         </EntityType>
-        <Association Name="FK_TBLBilet_TBLKullanici">
+        <EntityType Name="TBLYolcu">
+          <Key>
+            <PropertyRef Name="YolcuID" />
+          </Key>
+          <Property Name="YolcuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YolcuAdı" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="YolcuSoyadı" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLBilet" Relationship="DBBILETALModel.FK_TBLBilet_TBLYolcu" FromRole="TBLYolcu" ToRole="TBLBilet" />
+        </EntityType>
+        <Association Name="FK_TBLBilet_TBLKullanici1">
           <End Type="DBBILETALModel.TBLKullanici" Role="TBLKullanici" Multiplicity="1" />
           <End Type="DBBILETALModel.TBLBilet" Role="TBLBilet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLKullanici">
-              <PropertyRef Name="YolcuID" />
+              <PropertyRef Name="KullaniciID" />
             </Principal>
             <Dependent Role="TBLBilet">
-              <PropertyRef Name="YolcuID" />
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -318,6 +360,18 @@
             </Principal>
             <Dependent Role="TBLBilet">
               <PropertyRef Name="OtobusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLBilet_TBLYolcu">
+          <End Type="DBBILETALModel.TBLYolcu" Role="TBLYolcu" Multiplicity="0..1" />
+          <End Type="DBBILETALModel.TBLBilet" Role="TBLBilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLYolcu">
+              <PropertyRef Name="YolcuID" />
+            </Principal>
+            <Dependent Role="TBLBilet">
+              <PropertyRef Name="YolcuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -402,6 +456,7 @@
                 <ScalarProperty Name="KoltukNo" ColumnName="KoltukNo" />
                 <ScalarProperty Name="SatisFiyati" ColumnName="SatisFiyati" />
                 <ScalarProperty Name="YolcuID" ColumnName="YolcuID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
                 <ScalarProperty Name="BiletID" ColumnName="BiletID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -413,7 +468,7 @@
                 <ScalarProperty Name="Eposta" ColumnName="Eposta" />
                 <ScalarProperty Name="Soyad" ColumnName="Soyad" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
-                <ScalarProperty Name="YolcuID" ColumnName="YolcuID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -434,6 +489,15 @@
                 <ScalarProperty Name="KalkisLokasyonID" ColumnName="KalkisLokasyonID" />
                 <ScalarProperty Name="KoltukSayisi" ColumnName="KoltukSayisi" />
                 <ScalarProperty Name="OtobusID" ColumnName="OtobusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLYolcu">
+            <EntityTypeMapping TypeName="DBBILETALModel.TBLYolcu">
+              <MappingFragment StoreEntitySet="TBLYolcu">
+                <ScalarProperty Name="YolcuSoyadı" ColumnName="YolcuSoyadı" />
+                <ScalarProperty Name="YolcuAdı" ColumnName="YolcuAdı" />
+                <ScalarProperty Name="YolcuID" ColumnName="YolcuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

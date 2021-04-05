@@ -12,19 +12,17 @@ namespace BiletAl.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLKullanici
+    public partial class TBLYolcu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLKullanici()
+        public TBLYolcu()
         {
             this.TBLBilet = new HashSet<TBLBilet>();
         }
     
-        public int KullaniciID { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public string Eposta { get; set; }
-        public string Parola { get; set; }
+        public int YolcuID { get; set; }
+        public string YolcuAdı { get; set; }
+        public string YolcuSoyadı { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLBilet> TBLBilet { get; set; }

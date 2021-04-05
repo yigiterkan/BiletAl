@@ -191,7 +191,11 @@
     <Compile Include="Models\Entity\TBLOtobüs.cs">
       <DependentUpon>BiletAlEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\TBLYolcu.cs">
+      <DependentUpon>BiletAlEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BiletAlViewModel.cs" />
     <Compile Include="ViewModels\OtobusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2641,6 +2645,7 @@
     <Content Include="Views\Otobus\Index.cshtml" />
     <Content Include="Views\Bilet\BiletAl.cshtml" />
     <Content Include="Views\Bilet\BiletSil.cshtml" />
+    <Content Include="Views\Bilet\BiletAlBasarili.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

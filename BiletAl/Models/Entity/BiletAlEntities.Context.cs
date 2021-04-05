@@ -33,6 +33,7 @@ namespace BiletAl.Models.Entity
         public virtual DbSet<TBLKullanici> TBLKullanici { get; set; }
         public virtual DbSet<TBLLokasyon> TBLLokasyon { get; set; }
         public virtual DbSet<TBLOtobüs> TBLOtobüs { get; set; }
+        public virtual DbSet<TBLYolcu> TBLYolcu { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

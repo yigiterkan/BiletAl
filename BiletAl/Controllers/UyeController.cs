@@ -49,7 +49,7 @@ namespace BiletAl.Controllers
         }
         public ActionResult UyeGuncelle(TBLKullanici p)
         {
-            var uye = db.TBLKullanici.Find(p.YolcuID);
+            var uye = db.TBLKullanici.Find(p.KullaniciID);
             uye.Ad = p.Ad;
             uye.Soyad = p.Soyad; 
             uye.Eposta = p.Eposta;

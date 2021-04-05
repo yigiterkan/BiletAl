@@ -53,7 +53,7 @@
     @foreach (var k in Model)
     {
         <tr>
-            <form action="/Bilet/BiletAl" method="post" >
+            <form action="/Bilet/BiletAl" method="get" >
 
                 @Html.Hidden("otobusID",k.OtobusID)
                 <td>@k.OtobusID</td>
@@ -65,7 +65,7 @@
                 
                 <td> 
                     <p style="margin-top:10px;">
-                    <input type="submit" value="Satın Al" class="btn btn-success" />
+                    <input type="submit" value="Seç" class="btn btn-success" />
                     </p>
                 </td>
             </form>

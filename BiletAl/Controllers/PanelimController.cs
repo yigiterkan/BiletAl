@@ -36,8 +36,8 @@ namespace BiletAl.Controllers
         public ActionResult Kitaplarim()
         {
             var kullanici = (string)Session["Eposta"];
-            var id = db.TBLKullanici.Where(x => x.Eposta == kullanici.ToString()).Select(z => z.YolcuID).FirstOrDefault();
-            var degerler = db.TBLKullanici.Where(x => x.YolcuID == id).ToList();
+            var id = db.TBLKullanici.Where(x => x.Eposta == kullanici.ToString()).Select(z => z.KullaniciID).FirstOrDefault();
+            var degerler = db.TBLKullanici.Where(x => x.KullaniciID == id).ToList();
             return View(degerler);
         }
         public ActionResult Logout()
